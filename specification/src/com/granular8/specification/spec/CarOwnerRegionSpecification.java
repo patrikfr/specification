@@ -1,6 +1,6 @@
 package com.granular8.specification.spec;
 
-import com.granular8.specification.domain.Region;
+import com.granular8.specification.sample.domain.Region;
 
 import java.util.Set;
 

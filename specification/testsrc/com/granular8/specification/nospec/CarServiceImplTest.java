@@ -3,7 +3,7 @@ package com.granular8.specification.nospec;
 import com.domainlanguage.time.CalendarDate;
 import com.domainlanguage.time.Duration;
 import com.domainlanguage.timeutil.Clock;
-import com.granular8.specification.domain.*;
+import com.granular8.specification.sample.domain.*;
 import junit.framework.TestCase;
 
 import java.util.*;
