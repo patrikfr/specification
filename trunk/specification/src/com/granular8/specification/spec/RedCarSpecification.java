@@ -1,7 +1,7 @@
 package com.granular8.specification.spec;
 
-import com.granular8.specification.domain.Car;
-import static com.granular8.specification.domain.Color.RED;
+import com.granular8.specification.sample.domain.Car;
+import static com.granular8.specification.sample.domain.Color.RED;
 
 /**
  * Specification to tell if a car is red.

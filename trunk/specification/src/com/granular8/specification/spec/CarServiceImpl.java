@@ -1,8 +1,8 @@
 package com.granular8.specification.spec;
 
-import com.granular8.specification.domain.Car;
+import com.granular8.specification.sample.domain.Car;
 import com.granular8.specification.nospec.CarRepository;
-import com.granular8.specification.domain.Region;
+import com.granular8.specification.sample.domain.Region;
 
 import java.util.Collection;
 import java.util.HashSet;

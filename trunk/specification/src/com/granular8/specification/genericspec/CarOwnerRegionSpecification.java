@@ -1,7 +1,7 @@
 package com.granular8.specification.genericspec;
 
-import com.granular8.specification.domain.Car;
-import com.granular8.specification.domain.Region;
+import com.granular8.specification.sample.domain.Car;
+import com.granular8.specification.sample.domain.Region;
 
 import java.util.Set;
 

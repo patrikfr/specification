@@ -3,9 +3,9 @@ package com.granular8.specification.nospec;
 import com.domainlanguage.time.CalendarDate;
 import com.domainlanguage.time.Duration;
 import com.domainlanguage.timeutil.Clock;
-import com.granular8.specification.domain.Car;
-import com.granular8.specification.domain.Color;
-import com.granular8.specification.domain.Region;
+import com.granular8.specification.sample.domain.Car;
+import com.granular8.specification.sample.domain.Color;
+import com.granular8.specification.sample.domain.Region;
 
 import java.util.Collection;
 import java.util.HashSet;

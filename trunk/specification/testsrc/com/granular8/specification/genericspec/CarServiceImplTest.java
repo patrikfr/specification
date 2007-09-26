@@ -1,6 +1,6 @@
 package com.granular8.specification.genericspec;
 
-import com.granular8.specification.domain.*;
+import com.granular8.specification.sample.domain.*;
 import com.granular8.specification.nospec.CarRepository;
 import junit.framework.TestCase;
 

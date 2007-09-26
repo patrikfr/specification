@@ -1,4 +1,4 @@
-package com.granular8.specification.domain;
+package com.granular8.specification.sample.domain;
 
 import com.domainlanguage.time.CalendarDate;
 
