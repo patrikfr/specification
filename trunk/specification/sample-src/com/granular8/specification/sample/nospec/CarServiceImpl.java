@@ -32,7 +32,7 @@ public class CarServiceImpl {
 
     final CalendarDate today = Clock.now().calendarDate(TimeZone.getTimeZone("GMT"));
 
-    final Duration maxAge = Duration.years(3);
+    final Duration maxAge = Duration.years(5);
 
     final Collection<Car> cars = repository.findAllCarsInStock();
     final Collection<Car> keepers = new HashSet<Car>();
@@ -40,11 +40,15 @@ public class CarServiceImpl {
     for (Car car : cars) {
       if (car.color() == Color.RED &&
           (car.isConvertible() ||
-              authorizedRegions.contains(car.owner().homeAddress().region()) ||
-              (car.manufacturingDate().through(today).length().compareTo(maxAge) < 0)))
+              authorizedRegions.contains(car.owner().homeAddress().region()) &&
+              maxAge.startingFrom(car.manufacturingDate()).includes(today)
+          )
+         )
         keepers.add(car);
 
     }
     return keepers;
   }
 }
+
+
