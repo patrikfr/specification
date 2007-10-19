@@ -25,7 +25,6 @@ public class CarServiceImplTest extends TestCase {
   public void testFindCandidateCars() throws Exception {
     CarServiceImpl carServiceImpl = new CarServiceImpl();
     carServiceImpl.setRepository(new CarRepositoryStub());
-    carServiceImpl.setAuthorizedRegions(getAuthorizedRegions());
 
     Collection<Car> candicateCars = carServiceImpl.findCandidateCars();
     System.out.println("candicateCars = " + candicateCars);
@@ -33,16 +32,6 @@ public class CarServiceImplTest extends TestCase {
 
 
   }
-
-  private Set<Region> getAuthorizedRegions() {
-    Set<Region> regions = new HashSet<Region>();
-    regions.add(Region.SOUTH_WEST);
-    regions.add(Region.SOUTH_EAST);
-    regions.add(Region.SOUTH);
-
-    return regions;
-  }
-
 
   class CarRepositoryStub implements CarRepository {
 
