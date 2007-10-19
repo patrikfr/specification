@@ -1,9 +1,11 @@
-package com.granular8.specification.nospec;
+package com.granular8.specification.sample.nospec;
 
 import com.domainlanguage.time.CalendarDate;
 import com.domainlanguage.time.Duration;
 import com.domainlanguage.timeutil.Clock;
 import com.granular8.specification.sample.domain.*;
+import com.granular8.specification.sample.nospec.CarRepository;
+import com.granular8.specification.sample.nospec.CarServiceImpl;
 import junit.framework.TestCase;
 
 import java.util.*;
