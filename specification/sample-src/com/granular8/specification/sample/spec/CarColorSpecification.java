@@ -1,22 +1,20 @@
 package com.granular8.specification.sample.spec;
 
-import com.granular8.specification.sample.domain.Region;
 import com.granular8.specification.sample.domain.Car;
+import com.granular8.specification.sample.domain.Color;
 import com.granular8.specification.spec.AbstractSpecification;
 
-import java.util.Set;
+public class CarColorSpecification extends AbstractSpecification {
+  private Color color;
 
-public class CarOwnerRegionSpecification extends AbstractSpecification {
-  private Set<Region> authorizedRegions;
-
-  public CarOwnerRegionSpecification(Set<Region> authorizedRegions) {
-    this.authorizedRegions = authorizedRegions;
+  public CarColorSpecification(Color color) {
+    this.color = color;
   }
 
   public boolean isSatisfiedBy(Object o) {
     if (o instanceof Car) {
       Car car = (Car) o;
-      return authorizedRegions.contains(car.owner().homeAddress().region());
+      return car.color() == color;
     } else {
       throw new ClassCastException("I only deal with cars, you gave me: " +
          o.getClass().getCanonicalName());
