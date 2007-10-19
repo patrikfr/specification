@@ -4,9 +4,13 @@ import com.domainlanguage.time.CalendarDate;
 import com.domainlanguage.time.Duration;
 import com.domainlanguage.timeutil.Clock;
 import com.granular8.specification.sample.domain.*;
+import static com.granular8.specification.sample.testutil.CarTestFactory.*;
 import junit.framework.TestCase;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+import java.util.TimeZone;
 
 public class CarServiceImplTest extends TestCase {
 
@@ -43,16 +47,16 @@ public class CarServiceImplTest extends TestCase {
       List<Car> cars = new ArrayList<Car>();
 
       //Not vaild, wrong region
-      Car car1 = getCar1(mfgDate);
+      Car car1 = createCar1(mfgDate);
 
       //Not valid, not red
-      Car car2 = getCar2(mfgDate);
+      Car car2 = createCar2(mfgDate);
 
       //Valid, red + convertible
-      Car car3 = getCar3(mfgDate);
+      Car car3 = createCar3(mfgDate);
 
       //Valid, red, from the right region and only two years old
-      Car car4 = getCar4(mfgDate);
+      Car car4 = createCar4(mfgDate);
 
       //Invalid, too old
       Car car5 = createCar5(Duration.years(6).subtractedFrom(today));
@@ -64,71 +68,6 @@ public class CarServiceImplTest extends TestCase {
       cars.add(car5);
 
       return cars;
-    }
-
-    private Car createCar5(CalendarDate manufacturingDate) {
-      Car car5 = new Car();
-      car5.setColor(Color.RED);
-      car5.setConvertible(false);
-      car5.setManufacturingDate(manufacturingDate);
-      Person car5Owner = new Person();
-      Address car5OwnerAddress = new Address();
-      car5OwnerAddress.setRegion(Region.SOUTH);
-      car5Owner.setHomeAddress(car5OwnerAddress);
-      car5.setOwner(car5Owner);
-      return car5;
-    }
-
-    private Car getCar4(CalendarDate manufacturingDate) {
-      Car car4 = new Car();
-      car4.setColor(Color.RED);
-      car4.setConvertible(false);
-      car4.setManufacturingDate(manufacturingDate);
-      Person car4Owner = new Person();
-      Address car4OwnerAddress = new Address();
-      car4OwnerAddress.setRegion(Region.SOUTH_EAST);
-      car4Owner.setHomeAddress(car4OwnerAddress);
-      car4.setOwner(car4Owner);
-      return car4;
-    }
-
-    private Car getCar3(CalendarDate manufacturingDate) {
-      Car car3 = new Car();
-      car3.setColor(Color.RED);
-      car3.setConvertible(true);
-      car3.setManufacturingDate(manufacturingDate);
-      Person car3Owner = new Person();
-      Address car3OwnerAddress = new Address();
-      car3OwnerAddress.setRegion(Region.NORTH_EAST);
-      car3Owner.setHomeAddress(car3OwnerAddress);
-      car3.setOwner(car3Owner);
-      return car3;
-    }
-
-    private Car getCar2(CalendarDate manufacturingDate) {
-      Car car2 = new Car();
-      car2.setColor(Color.GREEN);
-      car2.setConvertible(true);
-      car2.setManufacturingDate(manufacturingDate);
-      Person car2Owner = new Person();
-      Address car2OwnerAddress = new Address();
-      car2OwnerAddress.setRegion(Region.SOUTH);
-      car2Owner.setHomeAddress(car2OwnerAddress);
-      car2.setOwner(car2Owner);
-      return car2;
-    }
-
-    private Car getCar1(CalendarDate manufacturingDate) {
-      Car car1 = new Car();
-      car1.setColor(Color.RED);
-      car1.setConvertible(false);
-      car1.setManufacturingDate(manufacturingDate);
-      Person car1Owner = new Person();
-      Address car1OwnerAddress = new Address();
-      car1OwnerAddress.setRegion(Region.NORTH_EAST);
-      car1Owner.setHomeAddress(car1OwnerAddress);
-      car1.setOwner(car1Owner);
-      return car1;
     }
   }
 }

@@ -6,8 +6,8 @@ import com.domainlanguage.timeutil.Clock;
 import com.granular8.specification.sample.domain.Car;
 import com.granular8.specification.sample.domain.Color;
 import com.granular8.specification.sample.domain.Region;
-import static com.granular8.specification.sample.domain.Region.SOUTH_EAST;
 import static com.granular8.specification.sample.domain.Region.SOUTH;
+import static com.granular8.specification.sample.domain.Region.SOUTH_EAST;
 
 import java.util.Collection;
 import java.util.HashSet;
@@ -15,7 +15,7 @@ import java.util.Set;
 import java.util.TimeZone;
 
 
-public class CarServiceImpl {
+public class CarServiceImpl implements CarService {
 
   private CarRepository repository;
 
