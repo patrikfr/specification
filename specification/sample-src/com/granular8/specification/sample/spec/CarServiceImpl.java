@@ -5,14 +5,13 @@ import static com.granular8.specification.sample.domain.Color.RED;
 import com.granular8.specification.sample.domain.Region;
 import static com.granular8.specification.sample.domain.Region.SOUTH;
 import static com.granular8.specification.sample.domain.Region.SOUTH_EAST;
-import com.granular8.specification.sample.nospec.CarRepository;
 import com.granular8.specification.spec.Specification;
 
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
-public class CarServiceImpl {
+public class CarServiceImpl implements CarService {
 
   private CarRepository repository;
 
