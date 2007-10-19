@@ -3,8 +3,8 @@ package com.granular8.specification.sample.spec;
 import com.granular8.specification.sample.domain.Car;
 import static com.granular8.specification.sample.domain.Color.RED;
 import com.granular8.specification.sample.domain.Region;
-import static com.granular8.specification.sample.domain.Region.SOUTH_EAST;
 import static com.granular8.specification.sample.domain.Region.SOUTH;
+import static com.granular8.specification.sample.domain.Region.SOUTH_EAST;
 import com.granular8.specification.sample.nospec.CarRepository;
 import com.granular8.specification.spec.Specification;
 
@@ -16,14 +16,12 @@ public class CarServiceImpl {
 
   private CarRepository repository;
 
-
   public void setRepository(final CarRepository repository) {
     this.repository = repository;
   }
 
   public Collection<Car> findCandidateCars() {
 
-    final Collection<Car> cars = repository.findAllCarsInStock();
     final Collection<Car> keepers = new HashSet<Car>();
 
     final Specification colorRed = new CarColorSpecification(RED);
@@ -33,15 +31,14 @@ public class CarServiceImpl {
 
     final Specification candidateCarSpecification = colorRed.and(approvedState.and(approvedAge).or(convertible));
 
+    final Collection<Car> cars = repository.findAllCarsInStock();
 
     for (Car car : cars) {
       if (candidateCarSpecification.isSatisfiedBy(car))
         keepers.add(car);
-
     }
+
     return keepers;
-
-
   }
 
   private Set<Region> getAuthorizedRegions() {

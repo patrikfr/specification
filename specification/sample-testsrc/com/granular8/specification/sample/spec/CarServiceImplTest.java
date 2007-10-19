@@ -14,7 +14,7 @@ import java.util.*;
 
 public class CarServiceImplTest extends TestCase {
 
-  //Scenario test for finding candidate cars using the CarService using specification implementation.
+  //Scenario test for finding candidate cars using the CarService and specification implementation.
 
   /*
   Imagine you run a used car dealership. Your particular niche is selling
@@ -32,8 +32,6 @@ public class CarServiceImplTest extends TestCase {
 
     Collection<Car> candicateCars = carServiceImpl.findCandidateCars();
     assertEquals(2, candicateCars.size());
-
-
   }
 
   class CarRepositoryStub implements CarRepository {
