@@ -42,4 +42,14 @@ public class Car {
   public void setManufacturingDate(CalendarDate manufacturingDate) {
     this.manufacturingDate = manufacturingDate;
   }
+
+
+  public String toString() {
+    return "Car{" +
+       "color=" + color +
+       ", convertible=" + convertible +
+       ", owner=" + owner +
+       ", manufacturingDate=" + manufacturingDate +
+       '}';
+  }
 }

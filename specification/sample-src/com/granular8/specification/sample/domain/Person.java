@@ -12,4 +12,11 @@ public class Person {
   public void setHomeAddress(Address homeAddress) {
     this.homeAddress = homeAddress;
   }
+
+
+  public String toString() {
+    return "Person{" +
+       "homeAddress=" + homeAddress +
+       '}';
+  }
 }
