@@ -6,6 +6,8 @@ import com.domainlanguage.timeutil.Clock;
 import com.granular8.specification.sample.domain.Car;
 import com.granular8.specification.sample.domain.Color;
 import com.granular8.specification.sample.domain.Region;
+import static com.granular8.specification.sample.domain.Region.SOUTH_EAST;
+import static com.granular8.specification.sample.domain.Region.SOUTH;
 
 import java.util.Collection;
 import java.util.HashSet;
@@ -16,16 +18,9 @@ import java.util.TimeZone;
 public class CarServiceImpl {
 
   private CarRepository repository;
-  private Set<Region> authorizedRegions;
-
 
   public void setRepository(final CarRepository repository) {
     this.repository = repository;
-  }
-
-
-  public void setAuthorizedRegions(final Set<Region> authorizedRegions) {
-    this.authorizedRegions = authorizedRegions;
   }
 
   public Collection<Car> findCandidateCars() {
@@ -37,17 +32,28 @@ public class CarServiceImpl {
     final Collection<Car> cars = repository.findAllCarsInStock();
     final Collection<Car> keepers = new HashSet<Car>();
 
+    Set<Region> authorizedRegions = getAuthorizedRegions();
+
     for (Car car : cars) {
       if (car.color() == Color.RED &&
-          (car.isConvertible() ||
-              authorizedRegions.contains(car.owner().homeAddress().region()) &&
-              maxAge.startingFrom(car.manufacturingDate()).includes(today)
-          )
+         (car.isConvertible() ||
+            authorizedRegions.contains(car.owner().homeAddress().region()) &&
+               maxAge.startingFrom(car.manufacturingDate()).includes(today)
+         )
          )
         keepers.add(car);
 
     }
     return keepers;
+  }
+
+  private Set<Region> getAuthorizedRegions() {
+    Set<Region> regions = new HashSet<Region>();
+    regions.add(Region.SOUTH_WEST);
+    regions.add(SOUTH_EAST);
+    regions.add(SOUTH);
+
+    return regions;
   }
 }
 
