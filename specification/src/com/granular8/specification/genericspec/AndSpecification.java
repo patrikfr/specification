@@ -1,7 +1,7 @@
 package com.granular8.specification.genericspec;
 
 /**
- * OR specification, used to create a new specifcation that is the OR of two other specifications.
+ * AND specification, used to create a new specifcation that is the AND of two other specifications.
  */
 public class AndSpecification<T> extends AbstractSpecification<T> {
 

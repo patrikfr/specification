@@ -2,11 +2,10 @@ package com.granular8.specification.genericspec;
 
 
 /**
- * Abstract base implementation of composite {@link com.granular8.specification.spec.Specification} with default
+ * Abstract base implementation of composite {@link com.granular8.specification.genericspec.Specification} with default
  * implementations for {@code and}, {@code or} and {@code not}.
  */
 public abstract class AbstractSpecification<T> implements Specification<T> {
-
 
   /**
    * {@inheritDoc}
