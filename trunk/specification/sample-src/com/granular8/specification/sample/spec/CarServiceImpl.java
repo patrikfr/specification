@@ -11,14 +11,23 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
+/**
+ * Default implementation of the {@link com.granular8.specification.sample.spec.CarService} interface.
+ */
 public class CarServiceImpl implements CarService {
 
   private CarRepository repository;
 
+  /**
+   * {@inheritDoc}
+   */
   public void setRepository(final CarRepository repository) {
     this.repository = repository;
   }
 
+  /**
+   * {@inheritDoc}
+   */
   public Collection<Car> findCandidateCars() {
 
     final Collection<Car> keepers = new HashSet<Car>();
