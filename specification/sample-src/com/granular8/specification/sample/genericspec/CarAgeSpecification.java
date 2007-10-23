@@ -13,6 +13,7 @@ import java.util.TimeZone;
  */
 public class CarAgeSpecification extends AbstractSpecification<Car> {
 
+  //TODO: Force clients to supply a reference to 'now'
   final CalendarDate today = Clock.now().calendarDate(TimeZone.getTimeZone("GMT"));
   final Duration maxAgeInYears;
 
