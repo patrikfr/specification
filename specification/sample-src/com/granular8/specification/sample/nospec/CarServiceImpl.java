@@ -15,14 +15,23 @@ import java.util.Set;
 import java.util.TimeZone;
 
 
+/**
+ * Default implementation of the {@link com.granular8.specification.sample.nospec.CarService} interface.
+ */
 public class CarServiceImpl implements CarService {
 
   private CarRepository repository;
 
+  /**
+   * {@inheritDoc}
+   */
   public void setRepository(final CarRepository repository) {
     this.repository = repository;
   }
 
+  /**
+   * {@inheritDoc}
+   */
   public Collection<Car> findCandidateCars() {
 
     final CalendarDate today = Clock.now().calendarDate(TimeZone.getTimeZone("GMT"));

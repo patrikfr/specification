@@ -27,9 +27,7 @@ public class CarServiceImpl implements CarService {
 
 
   /**
-   * Check the national used car repository and find cars that might be of interest for the business.
-   *
-   * @return Candidate cars.
+   * {@inheritDoc}
    */
   public Collection<Car> findCandidateCars() {
 

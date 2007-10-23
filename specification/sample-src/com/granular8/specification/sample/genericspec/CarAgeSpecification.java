@@ -8,16 +8,28 @@ import com.domainlanguage.timeutil.Clock;
 
 import java.util.TimeZone;
 
+/**
+ * Specification to tell if a car younger than the specified maximum age.
+ */
 public class CarAgeSpecification extends AbstractSpecification<Car> {
 
   final CalendarDate today = Clock.now().calendarDate(TimeZone.getTimeZone("GMT"));
-  final Duration maxAge;
+  final Duration maxAgeInYears;
 
-  public CarAgeSpecification(int maxYearsAge) {
-    maxAge = Duration.years(maxYearsAge);
+  /**
+   * Set max car age in years.
+   * The car must be less than the specified max for the specification to be satisfied.
+   *
+   * @param maxAgeInYears Max age in years.
+   */
+  public CarAgeSpecification(int maxAgeInYears) {
+    this.maxAgeInYears = Duration.years(maxAgeInYears);
   }
 
+  /**
+   * {@inheritDoc}
+   */
   public boolean isSatisfiedBy(Car car) {
-    return maxAge.startingFrom(car.manufacturingDate()).includes(today);
+    return maxAgeInYears.startingFrom(car.manufacturingDate()).includes(today);
   }
 }
