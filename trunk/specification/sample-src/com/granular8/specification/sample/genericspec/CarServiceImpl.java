@@ -6,10 +6,13 @@ import com.granular8.specification.sample.domain.Color;
 import com.granular8.specification.sample.domain.Region;
 import static com.granular8.specification.sample.domain.Region.SOUTH_EAST;
 import static com.granular8.specification.sample.domain.Region.SOUTH;
+import com.domainlanguage.timeutil.Clock;
+import com.domainlanguage.time.CalendarDate;
 
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.TimeZone;
 
 /**
  * Default implementation of the {@link CarService} interface.
@@ -34,10 +37,12 @@ public class CarServiceImpl implements CarService {
     final Collection<Car> cars = repository.findAllCarsInStock();
     final Collection<Car> keepers = new HashSet<Car>();
 
+    CalendarDate today = Clock.now().calendarDate(TimeZone.getTimeZone("GMT"));
+
+    final Specification<Car> approvedAge = new CarAgeSpecification(today, 5);
     final Specification<Car> colorRed = new CarColorSpecification(Color.RED);
     final Specification<Car> convertible = new ConvertibleCarSpecification();
     final Specification<Car> approvedState = new CarOwnerRegionSpecification(getAuthorizedRegions());
-    final Specification<Car> approvedAge = new CarAgeSpecification(5);
 
     final Specification<Car> candidateCarSpecification =
        colorRed.and(approvedState.and(approvedAge).or(convertible));

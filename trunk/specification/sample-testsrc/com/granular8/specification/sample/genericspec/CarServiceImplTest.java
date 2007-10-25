@@ -42,10 +42,12 @@ public class CarServiceImplTest extends TestCase {
     CarServiceImpl carServiceImpl = new CarServiceImpl();
     carServiceImpl.setRepository(new CarRepositoryStub());
 
+    CalendarDate today = Clock.now().calendarDate(TimeZone.getTimeZone("GMT"));
+
     final Specification<Car> colorRed = new CarColorSpecification(Color.RED);
     final Specification<Car> convertible = new ConvertibleCarSpecification();
     final Specification<Car> approvedState = new CarOwnerRegionSpecification(getAuthorizedRegions());
-    final Specification<Car> approvedAge = new CarAgeSpecification(5);
+    final Specification<Car> approvedAge = new CarAgeSpecification(today, 5);
 
     final Specification<Car> candidateCarSpecification =
        colorRed.and(approvedState.and(approvedAge).or(convertible));
