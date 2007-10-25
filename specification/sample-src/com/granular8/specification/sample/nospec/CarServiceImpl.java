@@ -61,7 +61,6 @@ public class CarServiceImpl implements CarService {
     regions.add(Region.SOUTH_WEST);
     regions.add(SOUTH_EAST);
     regions.add(SOUTH);
-
     return regions;
   }
 }

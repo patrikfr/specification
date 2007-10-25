@@ -14,9 +14,10 @@ public class CarAgeSpecificationTest extends TestCase {
 
   public void testFindCandidateCars() throws Exception {
 
-    CarAgeSpecification spec = new CarAgeSpecification(5);
+
 
     CalendarDate today = Clock.now().calendarDate(TimeZone.getTimeZone("GMT"));
+    CarAgeSpecification spec = new CarAgeSpecification(today, 5);
     CalendarDate mfgDate = Duration.years(2).subtractedFrom(today);
 
     Car car = new Car();

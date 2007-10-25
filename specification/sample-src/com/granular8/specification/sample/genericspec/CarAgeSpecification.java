@@ -1,20 +1,16 @@
 package com.granular8.specification.sample.genericspec;
 
-import com.granular8.specification.sample.domain.Car;
-import com.granular8.specification.genericspec.AbstractSpecification;
 import com.domainlanguage.time.CalendarDate;
 import com.domainlanguage.time.Duration;
-import com.domainlanguage.timeutil.Clock;
-
-import java.util.TimeZone;
+import com.granular8.specification.genericspec.AbstractSpecification;
+import com.granular8.specification.sample.domain.Car;
 
 /**
  * Specification to tell if a car younger than the specified maximum age.
  */
 public class CarAgeSpecification extends AbstractSpecification<Car> {
 
-  //TODO: Force clients to supply a reference to 'now'
-  final CalendarDate today = Clock.now().calendarDate(TimeZone.getTimeZone("GMT"));
+  final CalendarDate today;
   final Duration maxAgeInYears;
 
   /**
@@ -22,8 +18,10 @@ public class CarAgeSpecification extends AbstractSpecification<Car> {
    * The car must be less than the specified max for the specification to be satisfied.
    *
    * @param maxAgeInYears Max age in years.
+   * @param today         The date used as today's date when doing age comparison.
    */
-  public CarAgeSpecification(int maxAgeInYears) {
+  public CarAgeSpecification(CalendarDate today, int maxAgeInYears) {
+    this.today = today;
     this.maxAgeInYears = Duration.years(maxAgeInYears);
   }
 
