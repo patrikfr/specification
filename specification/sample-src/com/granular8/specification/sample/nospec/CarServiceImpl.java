@@ -1,14 +1,12 @@
 package com.granular8.specification.sample.nospec;
 
-import static com.granular8.specification.sample.domain.Region.SOUTH_WEST;
 import com.domainlanguage.time.CalendarDate;
 import com.domainlanguage.time.Duration;
 import com.domainlanguage.timeutil.Clock;
 import com.granular8.specification.sample.domain.Car;
 import com.granular8.specification.sample.domain.Color;
 import com.granular8.specification.sample.domain.Region;
-import static com.granular8.specification.sample.domain.Region.SOUTH;
-import static com.granular8.specification.sample.domain.Region.SOUTH_EAST;
+import static com.granular8.specification.sample.domain.Region.*;
 
 import java.util.Collection;
 import java.util.HashSet;
