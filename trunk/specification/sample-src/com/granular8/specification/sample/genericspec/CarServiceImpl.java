@@ -1,5 +1,6 @@
 package com.granular8.specification.sample.genericspec;
 
+import static com.granular8.specification.sample.domain.Region.SOUTH_WEST;
 import com.granular8.specification.genericspec.Specification;
 import com.granular8.specification.sample.domain.Car;
 import com.granular8.specification.sample.domain.Color;
@@ -56,7 +57,7 @@ public class CarServiceImpl implements CarService {
 
   private Set<Region> getAuthorizedRegions() {
     Set<Region> regions = new HashSet<Region>();
-    regions.add(Region.SOUTH_WEST);
+    regions.add(SOUTH_WEST);
     regions.add(SOUTH_EAST);
     regions.add(SOUTH);
 
