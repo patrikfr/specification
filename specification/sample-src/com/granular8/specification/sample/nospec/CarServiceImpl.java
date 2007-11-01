@@ -1,5 +1,6 @@
 package com.granular8.specification.sample.nospec;
 
+import static com.granular8.specification.sample.domain.Region.SOUTH_WEST;
 import com.domainlanguage.time.CalendarDate;
 import com.domainlanguage.time.Duration;
 import com.domainlanguage.timeutil.Clock;
@@ -41,7 +42,7 @@ public class CarServiceImpl implements CarService {
     final Collection<Car> cars = repository.findAllCarsInStock();
     final Collection<Car> keepers = new HashSet<Car>();
 
-    Set<Region> authorizedRegions = getAuthorizedRegions();
+    final Set<Region> authorizedRegions = getAuthorizedRegions();
 
     for (Car car : cars) {
       if (car.color() == Color.RED &&
@@ -58,7 +59,7 @@ public class CarServiceImpl implements CarService {
 
   private Set<Region> getAuthorizedRegions() {
     Set<Region> regions = new HashSet<Region>();
-    regions.add(Region.SOUTH_WEST);
+    regions.add(SOUTH_WEST);
     regions.add(SOUTH_EAST);
     regions.add(SOUTH);
     return regions;

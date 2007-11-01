@@ -31,7 +31,6 @@ public class CarServiceImplTest extends TestCase {
     carServiceImpl.setRepository(new CarRepositoryStub());
 
     Collection<Car> candicateCars = carServiceImpl.findCandidateCars();
-    System.out.println("candicateCars = " + candicateCars);
     assertEquals(2, candicateCars.size());
 
 
