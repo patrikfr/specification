@@ -1,4 +1,6 @@
 specification change history
 -----------------------------------------------------------------------------------------
+[36] Release 1.0.1 (2007-12-04)
+[33] license.txt is now included in jar
 
 [31] Release 1.0.0 (2007-12-04)
