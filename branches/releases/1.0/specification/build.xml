@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<project name="specification" default="[build]">
+
+  <!-- Run target [build] to compile sources, run tests and create a        -->
+  <!-- jar file of the generic specification                                -->
+  <!-- Note that 'junit.jar' must be in the 'lib' dir for the build to run  -->
+
+  <!-- Create file 'build.properties' alongside 'build-default.properties'  -->
+  <!-- to override default props                                            -->
+
+  <property file="build.properties"/>
+  <property file="build-default.properties"/>
+
+  <!-- Compiler options -->
+
+  <property name="compiler.debug" value="on"/>
+  <property name="compiler.generate.no.warnings" value="off"/>
+  <property name="compiler.args" value=""/>
+  <property name="compiler.max.memory" value="128m"/>
+
+  <!-- JDK definitions -->
+
+  <property name="project.jdk.home" value="${jdk.home.1.5}"/>
+
+  <dirname property="module.specification.basedir" file="${ant.file}"/>
+
+  <property name="specification.output.dir" value="${module.specification.basedir}/../out/production"/>
+  <property name="specification.testoutput.dir" value="${module.specification.basedir}/../out/test"/>
+  <property name="specification.testreport.dir" value="${module.specification.basedir}/testreport"/>
+
+  <path id="classpath">
+    <pathelement location="lib/timeandmoney-v0_5_1.jar"/>
+  </path>
+
+  <path id="testclasspath">
+    <path refid="classpath"/>
+    <pathelement location="lib/junit.jar"/>
+    <pathelement path="${specification.output.dir}"/>
+  </path>
+
+  <path id="sourcepath">
+    <dirset dir="${module.specification.basedir}">
+      <include name="sample-src"/>
+      <include name="src"/>
+    </dirset>
+  </path>
+
+  <path id="sourcepath-test">
+    <dirset dir="${module.specification.basedir}">
+      <include name="sample-testsrc"/>
+      <include name="testsrc"/>
+    </dirset>
+  </path>
+
+  <target name="[compile-production]" depends="[clean]">
+    <mkdir dir="${specification.output.dir}"/>
+    <javac destdir="${specification.output.dir}"
+           debug="${compiler.debug}"
+           nowarn="${compiler.generate.no.warnings}"
+           memorymaximumsize="${compiler.max.memory}"
+           fork="true">
+      <classpath refid="classpath"/>
+      <src refid="sourcepath"/>
+    </javac>
+  </target>
+
+  <target name="[compile-tests]" depends="[compile-production]" description="Compile Specification; test classes">
+    <mkdir dir="${specification.testoutput.dir}"/>
+    <javac destdir="${specification.testoutput.dir}"
+           debug="${compiler.debug}"
+           nowarn="${compiler.generate.no.warnings}"
+           memorymaximumsize="${compiler.max.memory}"
+           fork="true">
+      <classpath refid="testclasspath"/>
+      <src refid="sourcepath-test"/>
+    </javac>
+  </target>
+
+  <target name="[runtest]" depends="[compile-tests]">
+    <mkdir dir="${specification.testreport.dir}"/>
+    <junit printsummary="yes" haltonfailure="yes">
+      <classpath>
+        <path refid="testclasspath"/>
+        <pathelement path="${specification.testoutput.dir}"/>
+      </classpath>
+
+      <formatter type="plain"/>
+
+      <batchtest fork="yes" todir="${specification.testreport.dir}">
+        <fileset dir="${module.specification.basedir}/testsrc">
+          <include name="**/*Test.java"/>
+        </fileset>
+        <fileset dir="${module.specification.basedir}/sample-testsrc">
+          <include name="**/*Test.java"/>
+        </fileset>
+      </batchtest>
+    </junit>
+  </target>
+
+  <target name="[clean]" description="cleanup">
+    <delete dir="${specification.output.dir}"/>
+    <delete dir="${specification.testoutput.dir}"/>
+    <delete dir="${specification.testoutput.dir}"/>
+    <delete file="../specification.jar"/>
+  </target>
+
+  <target name="[jar]" depends="[runtest]">
+    <jar destfile="../specification.jar"
+         basedir="${specification.output.dir}"
+         includes="com/granular8/specification/genericspec/**"
+       >
+      <manifest>
+        <attribute name="Version" value="${specification.version}"/>
+      </manifest>
+
+    </jar>
+
+  </target>
+
+  <target name="[build]" depends="[jar]" description="build all"/>
+</project>
