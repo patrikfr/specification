@@ -109,6 +109,9 @@
          basedir="${specification.output.dir}"
          includes="com/granular8/specification/genericspec/**"
        >
+      <metainf dir="${module.specification.basedir}">
+        <include name="license.txt"/>
+      </metainf>
       <manifest>
         <attribute name="Version" value="${specification.version}"/>
       </manifest>

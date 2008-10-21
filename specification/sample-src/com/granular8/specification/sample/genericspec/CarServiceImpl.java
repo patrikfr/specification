@@ -41,10 +41,10 @@ public class CarServiceImpl implements CarService {
     final Specification<Car> approvedAge = new CarAgeSpecification(today, 5);
     final Specification<Car> colorRed = new CarColorSpecification(Color.RED);
     final Specification<Car> convertible = new ConvertibleCarSpecification();
-    final Specification<Car> approvedState = new CarOwnerRegionSpecification(getAuthorizedRegions());
+    final Specification<Car> approvedRegion = new CarOwnerRegionSpecification(getAuthorizedRegions());
 
     final Specification<Car> candidateCarSpecification =
-       colorRed.and(approvedState.and(approvedAge).or(convertible));
+       colorRed.and(approvedRegion.and(approvedAge).or(convertible));
 
     for (final Car car : cars) {
       if (candidateCarSpecification.isSatisfiedBy(car))

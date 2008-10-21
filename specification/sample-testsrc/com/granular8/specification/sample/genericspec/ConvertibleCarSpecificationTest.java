@@ -1,7 +1,6 @@
 package com.granular8.specification.sample.genericspec;
 
 import com.granular8.specification.sample.domain.Car;
-import com.granular8.specification.sample.spec.ConvertibleCarSpecification;
 import junit.framework.TestCase;
 
 public class ConvertibleCarSpecificationTest extends TestCase {
