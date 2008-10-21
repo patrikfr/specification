@@ -3,7 +3,7 @@ package com.granular8.specification.genericspec;
 /**
  * NOT decorator, used to create a new specifcation that is the inverse (NOT) of the given spec.
  */
-public class NotSpecification<T> extends AbstractSpecification<T> {
+public class NotSpecification<T> implements Specification<T> {
 
   private Specification<T> spec1;
 
