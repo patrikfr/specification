@@ -2,6 +2,8 @@ package com.granular8.specification.sample.genericspec;
 
 import com.domainlanguage.time.CalendarDate;
 import com.domainlanguage.timeutil.Clock;
+import com.granular8.specification.genericspec.AndSpecification;
+import com.granular8.specification.genericspec.OrSpecification;
 import com.granular8.specification.genericspec.Specification;
 import com.granular8.specification.sample.domain.Car;
 import com.granular8.specification.sample.domain.Color;
@@ -44,7 +46,13 @@ public class CarServiceImpl implements CarService {
     final Specification<Car> approvedRegion = new CarOwnerRegionSpecification(getAuthorizedRegions());
 
     final Specification<Car> candidateCarSpecification =
-       colorRed.and(approvedRegion.and(approvedAge).or(convertible));
+       new AndSpecification<Car>(
+          colorRed,
+          new OrSpecification<Car>(
+             new AndSpecification<Car>(
+                approvedRegion,
+                approvedAge),
+             convertible));
 
     for (final Car car : cars) {
       if (candidateCarSpecification.isSatisfiedBy(car))

@@ -3,15 +3,15 @@ package com.granular8.specification.sample.genericspec;
 import com.domainlanguage.time.CalendarDate;
 import com.domainlanguage.time.Duration;
 import com.domainlanguage.timeutil.Clock;
-import com.granular8.specification.sample.domain.*;
-import static com.granular8.specification.sample.domain.Region.SOUTH_EAST;
-import static com.granular8.specification.sample.domain.Region.SOUTH;
-import static com.granular8.specification.sample.testutil.CarTestFactory.createCar1;
-import static com.granular8.specification.sample.testutil.CarTestFactory.createCar2;
-import static com.granular8.specification.sample.testutil.CarTestFactory.createCar3;
-import static com.granular8.specification.sample.testutil.CarTestFactory.createCar4;
-import static com.granular8.specification.sample.testutil.CarTestFactory.createCar5;
+import com.granular8.specification.genericspec.AndSpecification;
+import com.granular8.specification.genericspec.OrSpecification;
 import com.granular8.specification.genericspec.Specification;
+import com.granular8.specification.sample.domain.Car;
+import com.granular8.specification.sample.domain.Color;
+import com.granular8.specification.sample.domain.Region;
+import static com.granular8.specification.sample.domain.Region.SOUTH;
+import static com.granular8.specification.sample.domain.Region.SOUTH_EAST;
+import static com.granular8.specification.sample.testutil.CarTestFactory.*;
 import junit.framework.TestCase;
 
 import java.util.*;
@@ -21,14 +21,14 @@ public class CarServiceImplTest extends TestCase {
   //Scenario test for finding candidate cars using the CarService.
 
   /*
-  Imagine you run a used car dealership. Your particular niche is selling
-  cars of the color red. But they must also be fairly new and reliable.
-  So besides being red, you want the current owner to live in certain
-  geographical regions, regions that provide good living conditions for
-  cars (e.g. no winterish kind of places), and you want the cars to be
-  less than five years old. But there is one exception, if it's a convertible,
-  the only restriction that applies is that it still must be red.
-   */
+ Imagine you run a used car dealership. Your particular niche is selling
+ cars of the color red. But they must also be fairly new and reliable.
+ So besides being red, you want the current owner to live in certain
+ geographical regions, regions that provide good living conditions for
+ cars (e.g. no winterish kind of places), and you want the cars to be
+ less than five years old. But there is one exception, if it's a convertible,
+ the only restriction that applies is that it still must be red.
+  */
 
   public void testFindCandidateCars() throws Exception {
     CarServiceImpl carServiceImpl = new CarServiceImpl();
@@ -50,7 +50,14 @@ public class CarServiceImplTest extends TestCase {
     final Specification<Car> approvedAge = new CarAgeSpecification(today, 5);
 
     final Specification<Car> candidateCarSpecification =
-       colorRed.and(approvedState.and(approvedAge).or(convertible));
+       new AndSpecification<Car>(
+          colorRed,
+          new OrSpecification<Car>(
+             new AndSpecification<Car>(
+                approvedState,
+                approvedAge),
+             convertible)
+       );
 
     Collection<Car> candicateCars = carServiceImpl.findCandidateCars(candidateCarSpecification);
     assertEquals(2, candicateCars.size());

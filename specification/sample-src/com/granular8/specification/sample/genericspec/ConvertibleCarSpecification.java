@@ -1,12 +1,12 @@
 package com.granular8.specification.sample.genericspec;
 
-import com.granular8.specification.genericspec.AbstractSpecification;
+import com.granular8.specification.genericspec.Specification;
 import com.granular8.specification.sample.domain.Car;
 
 /**
  * Specification to tell if a car is a convertible.
  */
-public class ConvertibleCarSpecification extends AbstractSpecification<Car> {
+public class ConvertibleCarSpecification implements Specification<Car> {
 
   /**
    * {@inheritDoc}

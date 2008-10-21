@@ -1,6 +1,6 @@
 package com.granular8.specification.sample.genericspec;
 
-import com.granular8.specification.genericspec.AbstractSpecification;
+import com.granular8.specification.genericspec.Specification;
 import com.granular8.specification.sample.domain.Car;
 import com.granular8.specification.sample.domain.Region;
 
@@ -10,7 +10,7 @@ import java.util.Set;
  * Specification to tell if a car's owner's home address is in the specifed set of
  * authorized regions.
  */
-public class CarOwnerRegionSpecification extends AbstractSpecification<Car> {
+public class CarOwnerRegionSpecification implements Specification<Car> {
 
   private Set<Region> authorizedRegions;
 

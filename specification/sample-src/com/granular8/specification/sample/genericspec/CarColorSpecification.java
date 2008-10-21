@@ -1,13 +1,13 @@
 package com.granular8.specification.sample.genericspec;
 
-import com.granular8.specification.genericspec.AbstractSpecification;
+import com.granular8.specification.genericspec.Specification;
 import com.granular8.specification.sample.domain.Car;
 import com.granular8.specification.sample.domain.Color;
 
 /**
  * Specification to tell if a car is of specified color.
  */
-public class CarColorSpecification extends AbstractSpecification<Car> {
+public class CarColorSpecification implements Specification<Car> {
 
   private Color color;
 
