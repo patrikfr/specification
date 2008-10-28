@@ -11,13 +11,28 @@ public class AndSpecificationTest extends TestCase {
     AndSpecification<Object> andSpecification = new AndSpecification<Object>(trueSpec, trueSpec);
     assertTrue(andSpecification.isSatisfiedBy(new Object()));
 
+    andSpecification = new AndSpecification<Object>(trueSpec, trueSpec, trueSpec, trueSpec);
+    assertTrue(andSpecification.isSatisfiedBy(new Object()));
+
     andSpecification = new AndSpecification<Object>(falseSpec, trueSpec);
+    assertFalse(andSpecification.isSatisfiedBy(new Object()));
+
+    andSpecification = new AndSpecification<Object>(falseSpec, trueSpec, trueSpec);
+    assertFalse(andSpecification.isSatisfiedBy(new Object()));
+
+    andSpecification = new AndSpecification<Object>(trueSpec, trueSpec, falseSpec);
     assertFalse(andSpecification.isSatisfiedBy(new Object()));
 
     andSpecification = new AndSpecification<Object>(trueSpec, falseSpec);
     assertFalse(andSpecification.isSatisfiedBy(new Object()));
 
     andSpecification = new AndSpecification<Object>(falseSpec, falseSpec);
+    assertFalse(andSpecification.isSatisfiedBy(new Object()));
+
+    andSpecification = new AndSpecification<Object>(falseSpec, falseSpec, trueSpec);
+    assertFalse(andSpecification.isSatisfiedBy(new Object()));
+
+    andSpecification = new AndSpecification<Object>(falseSpec, falseSpec, falseSpec);
     assertFalse(andSpecification.isSatisfiedBy(new Object()));
 
   }
