@@ -1,1 +1,1 @@
-See http://code.google.com/p/specification/ for more information.
+See http://github.com/patrikfr/specification/ for very little more information. If any.
