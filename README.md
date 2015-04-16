@@ -11,6 +11,6 @@ Specification 1.0.1 now available. This is the first public release.
 Source code, tests and sample implementations, as well as specification classes for use without Java 5 generics, are available from the Git repository. 
 
 ## References
-* [Domain-Driven Design](http://dddcommmunity.org)
+* [Domain-Driven Design](http://dddcommunity.org)
 * Article: [Specification Pattern as a Refactoring Tool](http://www.citerus.se/specification-pattern-as-a-refactoring-tool/)
 * Obligatory sadly neglected blog - [The Weak reference](https://weakreference.blogspot.com)
